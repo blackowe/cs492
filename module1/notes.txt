@@ -1,0 +1,20 @@
+
+val vs var
+
+val some_name = "hello"  # this string type is inherited and cannot be changed
+var some_count = 1    # infers int type, some_count CAN be changed, but Type CANNOT be changed
+
+
+# how to name a function
+
+
+fun some_name (some_parameters) : return_type {
+    fun_body_code
+}
+
+Example:
+fun birthdayGreeting(name: String): String {
+    val nameGreeting = "Happy Birthday, Rover!"
+    val ageGreeting = "You are now 5 years old"
+    return "$nameGreeting \n $ageGreeting"
+}
