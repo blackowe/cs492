@@ -1,9 +1,14 @@
 
-val vs var
+val(cannot change) vs var(can change)
 
 val some_name = "hello"  # this string type is inherited and cannot be changed
-var some_count = 1    # infers int type, some_count CAN be changed, but Type CANNOT be changed
+     or 
+val some_name: String = "hello"
 
+
+var some_count = 1    # infers int type, some_count CAN be changed, but Type CANNOT be changed
+    or
+var some_count: Int = 1
 
 # how to name a function
 
@@ -18,3 +23,12 @@ fun birthdayGreeting(name: String): String {
     val ageGreeting = "You are now 5 years old"
     return "$nameGreeting \n $ageGreeting"
 }
+
+
+# how to comment
+// This is a comment in Kotlin
+/*
+ * This is 
+ * a
+ * multiline comment
+ */
