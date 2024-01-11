@@ -76,6 +76,7 @@ fun ScreenLayout(modifier: Modifier = Modifier) {
             Image(
                 painter = meme_kid,
                 contentDescription = null,
+                shape = RoundedCornerShape(15.dp),
                 modifier = Modifier
                     .padding(bottom= 32.dp)
             )
@@ -127,17 +128,28 @@ private fun CardInfo(name: String, email: String, univ: String, course: String, 
     }
 }
 
+// ------- TEST---------------------------------
 @Composable
-private fun IconAndContact(name: String, email: String, univ: String, course: String,  modifier: Modifier = Modifier) {
+private fun IconAndContact(contact_info: String, modifier: Modifier = Modifier) {
 
-    Text (
-        text = name,
-        modifier = modifier,
-        color = Color.White
-    )
+    Row(){
+
+        Image(){
+            
+        }
+        
+        Text (
+            text = contact_info,
+            modifier = modifier,
+            color = Color.White
+        )
+        
+    }
+    
+
 
 }
-
+// ---------------------------------------------
 
 
 @Preview(showBackground = true)
