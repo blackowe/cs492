@@ -23,9 +23,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.text.style.TextDecoration
+
 
 
 class MainActivity : ComponentActivity() {
@@ -46,6 +52,7 @@ class MainActivity : ComponentActivity() {
 }
 
 // Attempt #1 -----------------------------------------------------------
+/*
 @Composable
 fun ScreenLayout(modifier: Modifier = Modifier) {
     Box(
@@ -125,30 +132,136 @@ private fun CardInfo(name: String, email: String, univ: String, course: String, 
         )
     }
 }
+*/
 // Attempt #1 END ---------------------------------------------------------------
 // Attempt #2 --------------------------------------------------------------------
 
 @Composable
-private fun IconWithContact(contactInfo: String, imageName:String, modifier: Modifier = Modifier) {
+fun ScreenLayout(modifier: Modifier = Modifier) {
+    Box(
+    ){
+
+
+        val bc_back = painterResource(R.drawable.bc_back)
+
+        // red/black background image
+        Image(
+            painter = bc_back,
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(1.dp)
+        )
+
+        // Centers All Elements
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .fillMaxHeight(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally)
+        {
+
+            // Meme kid photo, Job Title, Job Phrase Display
+            ImageWithName()
+
+            // Contact Information Display
+            ContactInfoLines()
+        }
+    }
+}
+
+
+
+@Composable
+private fun ImageWithName(modifier: Modifier = Modifier){
+
+    val meme_kid = painterResource(R.drawable.meme_kid)
+
+    // meme kid image
+    Image(
+        painter = meme_kid,
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+        modifier = Modifier
+            .padding(bottom= 15.dp)
+            .size(200.dp)
+    )
+
+    // My name
+    Text(
+        text = stringResource(R.string.card_name),
+        color = Color.White,
+
+        style = TextStyle(fontSize = 32.sp),
+        modifier = Modifier
+            .padding(bottom = 6.dp)
+    )
+
+    // Job Title
+    Text(
+        text = "Pokemon Trainer",
+        color = Color.White,
+        style = TextStyle(fontSize = 24.sp),
+        fontStyle = FontStyle.Italic,
+        modifier = Modifier
+            .padding(bottom = 30.dp)   // padding added to push ContactInfoLines() down screen
+    )
+
+    // Saying
+    Text(
+        text = "Gotta Catch'em All !",
+        color = Color.White,
+        style = TextStyle(fontSize = 42.sp),
+        fontFamily = FontFamily.Cursive,
+        modifier = Modifier
+            .padding(bottom = 80.dp)   // padding added to push ContactInfoLines() down screen
+    )
+}
+
+@Composable
+private fun IconWithContactLine(iconId: Int, contactInfoId: Int, modifier: Modifier = Modifier) {
 
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
+
+        // display Icon image
         Image(
-             painter = painterResource(R.drawable.imageName),
-             contentDescription = null,
-             modifier = Modifier.size(24.dp)
+            painter = painterResource(iconId),
+            contentDescription = null,
+            modifier = Modifier
+                .size(40.dp)
+                .padding(end = 10.dp)
+        )
+        // display Icon text
+        Text(
+            text = stringResource(contactInfoId),
+            modifier = modifier,
+            color = Color.White,
+            style = TextStyle(fontSize = 20.sp),
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.SansSerif
         )
 
-        Text (
-            text = contactInfo,
-            modifier = modifier,
-            color = Color.White
-        )
     }
 }
 
+
+
+@Composable
+private fun ContactInfoLines(modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+
+    ){
+        IconWithContactLine(R.drawable.phone_icon, R.string.card_phone, modifier)
+        IconWithContactLine(R.drawable.email_icon, R.string.card_email, modifier)
+        IconWithContactLine(R.drawable.book, R.string.card_univ, modifier)
+    }
+}
 
 
 @Preview(showBackground = true)
