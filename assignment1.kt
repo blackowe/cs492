@@ -23,7 +23,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.graphics.Color
-
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
 
 
 class MainActivity : ComponentActivity() {
@@ -36,7 +38,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    //Greeting("Android")
                     ScreenLayout()
                 }
             }
@@ -44,7 +45,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
+// Attempt #1 -----------------------------------------------------------
 @Composable
 fun ScreenLayout(modifier: Modifier = Modifier) {
     Box(
@@ -76,7 +77,6 @@ fun ScreenLayout(modifier: Modifier = Modifier) {
             Image(
                 painter = meme_kid,
                 contentDescription = null,
-                shape = RoundedCornerShape(15.dp),
                 modifier = Modifier
                     .padding(bottom= 32.dp)
             )
@@ -94,8 +94,6 @@ fun ScreenLayout(modifier: Modifier = Modifier) {
     }
 
 }
-
-
 
 
 @Composable
@@ -127,29 +125,30 @@ private fun CardInfo(name: String, email: String, univ: String, course: String, 
         )
     }
 }
+// Attempt #1 END ---------------------------------------------------------------
+// Attempt #2 --------------------------------------------------------------------
 
-// ------- TEST---------------------------------
 @Composable
-private fun IconAndContact(contact_info: String, modifier: Modifier = Modifier) {
+private fun IconWithContact(contactInfo: String, imageName:String, modifier: Modifier = Modifier) {
 
-    Row(){
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ){
+        Image(
+             painter = painterResource(R.drawable.imageName),
+             contentDescription = null,
+             modifier = Modifier.size(24.dp)
+        )
 
-        Image(){
-            
-        }
-        
         Text (
-            text = contact_info,
+            text = contactInfo,
             modifier = modifier,
             color = Color.White
         )
-        
     }
-    
-
-
 }
-// ---------------------------------------------
+
 
 
 @Preview(showBackground = true)
@@ -158,6 +157,5 @@ fun GreetingPreview() {
     Assignment_1_Business_Card_AppTheme {
 
         ScreenLayout()
-        //Greeting("Android")
     }
 }
